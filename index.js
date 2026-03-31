@@ -6,6 +6,7 @@ const {
   removeContact,
 } = require("./contacts");
 
+
 program
   .option("-a, --action <type>", "choose action")
   .option("-i, --id <type>", "user id")
@@ -13,26 +14,34 @@ program
   .option("-e, --email <type>", "user email")
   .option("-p, --phone <type>", "user phone");
 
-program.parse();
+program.parse(process.argv);
 
-const options = program.opts();
+const argv = program.opts();
 
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      console.table(await listContacts());
+    
+      const allContacts = await listContacts();
+      console.table(allContacts);
       break;
 
     case "get":
-      console.log(await getContactById(id));
+      
+      const contact = await getContactById(id);
+      console.log(contact);
       break;
 
     case "add":
-      console.log(await addContact(name, email, phone));
+ 
+      const newContact = await addContact(name, email, phone);
+      console.log(newContact);
       break;
 
     case "remove":
-      console.log(await removeContact(id));
+      
+      const deletedContact = await removeContact(id);
+      console.log(deletedContact);
       break;
 
     default:
@@ -40,4 +49,4 @@ async function invokeAction({ action, id, name, email, phone }) {
   }
 }
 
-invokeAction(options);
+invokeAction(argv);
