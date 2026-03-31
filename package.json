@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Mariia Illarionova <illarionovam@gmail.com>",
+  "author": "Ioana Trifoi <it@neulant-it.de> ",
   "license": "ISC",
   "dependencies": {
     "commander": "^13.1.0"
